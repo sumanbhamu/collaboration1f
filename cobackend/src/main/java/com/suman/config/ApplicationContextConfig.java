@@ -14,9 +14,15 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.suman.dao.JobDAO;
+import com.suman.dao.JobDAOImpl;
 import com.suman.dao.UserDAO;
+import com.suman.dao.UserDAO1;
 import com.suman.dao.UserDAOImpl;
+import com.suman.dao.UserDAOImpl1;
+import com.suman.model.Job;
 import com.suman.model.User;
+import com.suman.model.User12;
 
 @Configuration
 @ComponentScan("com")
@@ -52,31 +58,20 @@ public class ApplicationContextConfig {
 	@Bean(name = "sessionFactory")
 	public SessionFactory getSessionFactory(DataSource dataSource) {
 
-		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource); // sessionBuilder
-																								// can
-																								// b
-																								// any
-																								// other
-																								// name
-																								// too
+		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource); 
 		sessionBuilder.addProperties(getHibernateProperties());
 		sessionBuilder.addAnnotatedClass(User.class);
+		sessionBuilder.addAnnotatedClass(Job.class);
+		
+		sessionBuilder.addAnnotatedClass(User12.class);
+		
 		return sessionBuilder.buildSessionFactory();
 	}
 
 	@Autowired
 	@Bean(name = "transactionManager")
 	public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) {
-		HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory); // should
-																											// be
-																											// same
-																											// name
-																											// as
-																											// bean
-																											// name
-																											// of
-																											// session
-																											// factory
+		HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory); 
 		return transactionManager;
 	}
 	/*.......USER..........*/
@@ -92,7 +87,35 @@ public class ApplicationContextConfig {
 	public UserDAO getUserDAO(SessionFactory sessionFactory) {
 		return new UserDAOImpl(sessionFactory);
 	}
+	
+	
+	/*.......JOB..........*/
+
+	@Autowired
+	@Bean(name = "job")
+	public Job getJob() {
+		return new Job();
+	}
+
+	@Autowired
+	@Bean(name = "jobDAO")
+	public JobDAO getJobDAO(SessionFactory sessionFactory) {
+		return new JobDAOImpl(sessionFactory);
+	}
 
 	
+	/* test*/
+	@Autowired
+	@Bean(name = "user12")
+	public User12 getUser1() {
+		return new User12();
+	}
+
+	@Autowired
+	@Bean(name = "userDAO1")
+	public UserDAO1 getUserDAO1(SessionFactory sessionFactory) {
+		return new UserDAOImpl1(sessionFactory);
+	}
+
 
 }
