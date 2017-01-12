@@ -17,7 +17,7 @@ public class BlogComment extends BaseDomain{
 	
 	private String blog_id;
 	private String user_id;
-	private String blog_comment_data;
+	private String blog_comment_data;  //comments
 	private Date bcomment_date;
 	public String getId() {
 		return id;
