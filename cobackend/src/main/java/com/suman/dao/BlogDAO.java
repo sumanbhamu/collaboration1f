@@ -3,6 +3,7 @@ package com.suman.dao;
 import java.util.List;
 
 import com.suman.model.Blog;
+import com.suman.model.BlogComment;
 
 public interface BlogDAO {
 
@@ -14,13 +15,17 @@ public boolean save(Blog blog);
 	
 	public Blog get(String blogID);
 	
-	/*public Blog getName(String name);*/
 	
-    public List<Blog> viewBlogs();
+	
+    public List<Blog> viewBlogs();   // list of blogs
     
     /*related to comment*/
-    List<Blog> viewMyBlogs(String userId);  /*posted by*/
     
-    void addComment(Blog blogComment);
-    List<Blog> viewComments(String blogId);
+    public boolean addComment(BlogComment blogComment); //to add comments
+    
+    
+    List<BlogComment> viewMyBlogs(String userId);  /*posted by -list individual blog*/
+    
+    
+    List<BlogComment> viewComments(String blogId);   // list of comments
 }
