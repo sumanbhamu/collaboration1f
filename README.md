@@ -5,3 +5,14 @@
 ####Users are divided into 2 categories:
 Internal : Admin and Employee<br>
 External : Student and Alumni
+####Technologies used:
+
+1.Spring 2.Hibernate 3.Angular JS 4.HTML 5.CSS 6.Bootstrap
+####Database:
+
+oracle database 11g express edition
+####Server:
+
+Apache Tomcat 8
+
+    Contact GitHub API Training Shop Blog Abou
