@@ -6,8 +6,10 @@ import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.suman.model.Blog;
+import com.suman.model.BlogComment;
 
 @Repository(value = "BlogDAO")
 public class BlogDAOImpl implements BlogDAO {
@@ -19,6 +21,7 @@ public class BlogDAOImpl implements BlogDAO {
 		this.sessionFactory = sessionFactory;
 	}
 
+	@Transactional
 	public boolean save(Blog blog) {
 		try {
 			sessionFactory.getCurrentSession().save(blog);
@@ -29,6 +32,7 @@ public class BlogDAOImpl implements BlogDAO {
 		}
 	}
 
+	@Transactional
 	public boolean update(Blog blog) {
 		try {
 			sessionFactory.getCurrentSession().update(blog);
@@ -39,6 +43,7 @@ public class BlogDAOImpl implements BlogDAO {
 		}
 	}
 
+	@Transactional
 	public boolean delete(Blog blog) {
 		try {
 			sessionFactory.getCurrentSession().delete(blog);
@@ -49,6 +54,7 @@ public class BlogDAOImpl implements BlogDAO {
 		}
 	}
 
+	@Transactional
 	public Blog get(String blogID) {
 		String hql = "from Blog where blog_id=" + "'" + blogID + "'";
 
@@ -64,6 +70,7 @@ public class BlogDAOImpl implements BlogDAO {
 		}
 	}
 
+	@Transactional
 	public List<Blog> viewBlogs() {
 		String hql = " from Blog";
 
@@ -71,19 +78,32 @@ public class BlogDAOImpl implements BlogDAO {
 		return query.list();
 	}
 
-	public List<Blog> viewMyBlogs(String userId) {
+	@Transactional
+	public  boolean addComment(BlogComment blogComment) {
+		try {
+			sessionFactory.getCurrentSession().save(blogComment);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	@Transactional
+	public List<BlogComment> viewMyBlogs(String userId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public void addComment(Blog blogComment) {
-		// TODO Auto-generated method stub
+	@Transactional
+	public List<BlogComment> viewComments(String blogId) {
+		
+		String hql = " from BlogComment";
+		
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		return query.list();
 
-	}
-
-	public List<Blog> viewComments(String blogId) {
-		// TODO Auto-generated method stub
-		return null;
+	
 	}
 
 }
