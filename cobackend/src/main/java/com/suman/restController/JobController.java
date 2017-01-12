@@ -1,5 +1,6 @@
 package com.suman.restController;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +31,9 @@ public class JobController {
 	@Autowired
 	JobDAO jobDAO;
 	
+	@Autowired
+	HttpSession httpSession;
+	
 	@RequestMapping(value="/getAllJobs/",method=RequestMethod.GET)
 	public ResponseEntity<List<Job>> getAllAvailableJob()
 	{
@@ -54,6 +58,7 @@ public class JobController {
 	{
 		String loggedInUserId=(String) httpSession.getAttribute("loggedInUserId");
 		List<Job> jobs=new ArrayList<Job>();
+		
 		if(loggedInUserId==null || loggedInUserId.isEmpty())
 		{
 			job.setErrorCode("404");
@@ -63,8 +68,8 @@ public class JobController {
 		}
 		else{
 			job.setErrorCode("200");
-			job.setErrorMessage("u hv successfully recieved ...in job controller.java.");
-			
+			job.setErrorMessage("u hv successfully recieved ...");
+			System.out.println("u hv successfully recieved ...in job controller.java.");
 			jobs=jobDAO.getMyAppliedJobs(loggedInUserId);
 			
 		}
@@ -78,7 +83,7 @@ public class JobController {
 	public ResponseEntity<Job> getJobDetails(@PathVariable("jobId")String jobId)
 	{
 		Job job=jobDAO.getJobDetails(jobId);
-		if(job==null){
+		if(job == null){
 			job=new Job();
 			job.setErrorCode("404");
 			job.setErrorMessage("job does not exists with id:" + jobId);
@@ -109,7 +114,7 @@ public class JobController {
 	
 	
 	@RequestMapping(value="/applyForJob/{jobId}",method=RequestMethod.POST)
-	public ResponseEntity<JobApplied>  applyForJob(@PathVariable("jobId")String jobId,HttpSession httpSession)
+	public ResponseEntity<JobApplied>  applyForJob(@PathVariable("jobId")String jobId)
 	{
 		String loggedInUserId=(String) httpSession.getAttribute("loggedInUserId");
 		
@@ -117,21 +122,32 @@ public class JobController {
 		if(loggedInUserId==null || loggedInUserId.isEmpty())
 		{
 			job.setErrorCode("404");
-			job.setErrorMessage("u hv to login to see ur apply jobs..");
+			job.setErrorMessage("u hv to not login to see ur apply jobs..");
 			
 		}
 		else
 		{
+			if(isUserAppliedForTheJob(loggedInUserId,jobId)==false){
+			
 			jobApplied.setJob_id(jobId);
 			jobApplied.setUser_id(loggedInUserId);
 			jobApplied.setStatus('N'); //newly applied ; c-call for interview ; s-selected
-			if(jobDAO.save(jobApplied)==false)
+			jobApplied.setDate_applied(new Date(System.currentTimeMillis()));
+			if(jobDAO.save(jobApplied))
 			{
-				job.setErrorCode("404");
-				job.setErrorMessage("not able apply for job....");
-				System.out.println("not able apply for job....in job controller.java");
+				jobApplied.setErrorCode("200");
+				jobApplied.setErrorMessage("u hv successfully  applied for the job...."+jobId);
+				System.out.println("not able apply for job....in job controller.java .."+jobId);
+			}
 			}
 			
+			else{
+				jobApplied.setErrorCode("404");
+				jobApplied.setErrorMessage("already applied for the job...."+jobId);
+				System.out.println("already applied for the job....in job controller.java .."+jobId);
+
+				
+			}
 		}
 		
 		return new ResponseEntity<JobApplied>(jobApplied,HttpStatus.OK);
@@ -143,7 +159,7 @@ public class JobController {
 	
 	
 	@RequestMapping(value="/selectUser/{userId}/{jobId}/{remarks}",method=RequestMethod.PUT)
-	public ResponseEntity<Job>  selectUser(@PathVariable("userId")String userId,@PathVariable("jobId")String jobId
+	public ResponseEntity<JobApplied>  selectUser(@PathVariable("userId")String userId,@PathVariable("jobId")String jobId
 			,@PathVariable("remarks")String remarks,HttpSession httpSession)
 	{
 		jobApplied=jobDAO.getJobApplied(userId, jobId);
@@ -151,19 +167,19 @@ public class JobController {
 		 //newly applied ; c-call for interview ; s-selected
 		jobApplied=updateJobApplicationStatus(userId, jobId,'S',remarks);	
 		
-		return new ResponseEntity<Job>(job,HttpStatus.OK);
+		return new ResponseEntity<JobApplied>(jobApplied,HttpStatus.OK);
 	}
 	
 	
 	@RequestMapping(value="/callForInterview/{userId}/{jobId}/{remarks}",method=RequestMethod.PUT)
-	public ResponseEntity<Job>  callForInterview(@PathVariable("userId")String userId,@PathVariable("jobId")String jobId
+	public ResponseEntity<JobApplied>  callForInterview(@PathVariable("userId")String userId,@PathVariable("jobId")String jobId
 			,@PathVariable("remarks")String remarks,HttpSession httpSession)
 	{
 		jobApplied=jobDAO.getJobApplied(userId, jobId);
 			
 		jobApplied=updateJobApplicationStatus(userId, jobId,'C',remarks);
 		
-		return new ResponseEntity<Job>(job,HttpStatus.OK);
+		return new ResponseEntity<JobApplied>(jobApplied,HttpStatus.OK);
 	}
 	
 	
@@ -171,7 +187,7 @@ public class JobController {
 	
 	
 	@RequestMapping(value="/rejectJobApplication/{userId}/{jobId}/{remarks}",method=RequestMethod.PUT)
-	public ResponseEntity<Job>  rejectJobApplication(@PathVariable("userId")String userId,@PathVariable("jobId")String jobId
+	public ResponseEntity<JobApplied>  rejectJobApplication(@PathVariable("userId")String userId,@PathVariable("jobId")String jobId
 			,@PathVariable("remarks")String remarks,HttpSession httpSession)
 	{
 		jobApplied=jobDAO.getJobApplied(userId, jobId); //get particular row
@@ -180,7 +196,7 @@ public class JobController {
 		jobApplied=updateJobApplicationStatus(userId, jobId,'R',remarks);
 		
 		
-		return new ResponseEntity<Job>(job,HttpStatus.OK);
+		return new ResponseEntity<JobApplied>(jobApplied,HttpStatus.OK);
 	}
 	
 	
@@ -190,20 +206,45 @@ public class JobController {
 	private JobApplied updateJobApplicationStatus(String userId,String jobId,char status,String remarks)
 	{
 		
+		if(isUserAppliedForTheJob(userId,jobId) == false){
+			
+			jobApplied.setErrorCode("404");
+			jobApplied.setErrorMessage(userId+" not applied for the job .."+jobId);
+			System.out.println(userId+" not applied for the job ..in controller.."+jobId);
+			return jobApplied;
+			
+		}
+		
+		String loggedInUserRole = (String) httpSession.getAttribute("loggedInUserRole");//from usercontroller.java
+		if(loggedInUserRole == null || loggedInUserRole.isEmpty()){   // 1st need to login 
+			jobApplied.setErrorCode("404");
+			jobApplied.setErrorMessage("u r not loggedin..");
+			System.out.println("u r not logged in job controller.java.");
+			return jobApplied;
+			
+		}
+		if(!loggedInUserRole.equalsIgnoreCase("admin")) // if not admin
+		{
+			jobApplied.setErrorCode("404");
+			jobApplied.setErrorMessage("u r not admin to do this operation ..");
+			System.out.println("u r not admin to do this operation .in job controller.java.");
+			return jobApplied;
+		}
+		
 		jobApplied=jobDAO.getJobApplied(userId, jobId);
 		
 		jobApplied.setStatus(status);
 		jobApplied.setRemark(remarks);
-		
+			
 		if(jobDAO.update(jobApplied)==false){
-			job.setErrorCode("404");
-			job.setErrorMessage("not able to change the application status to .."+status);
+			jobApplied.setErrorCode("404");
+			jobApplied.setErrorMessage("not able to change the application status to .."+status);
 			System.out.println("not able to change the application status to .."+status+"in job controller,java");
 			
 		}
 		else{
-			job.setErrorCode("200");
-			job.setErrorMessage("successfully  changed the application status to "+status);
+			jobApplied.setErrorCode("200");
+			jobApplied.setErrorMessage("successfully  changed the application status to "+status);
 			System.out.println("successfully  changed the application status to "+status +"in job controller,java");
 			
 		}
@@ -212,5 +253,21 @@ public class JobController {
 		
 		
 	
+	
+	
+	
+	private boolean isUserAppliedForTheJob(String userId,String jobId) {  // check whether user has applied for job or not
+		
+		if(jobDAO.getJobApplied(userId, jobId) == null){
+			return false;
+		}
+		return true;
+		
+	}
+	
 
+	
+	
+	
+	
 }
