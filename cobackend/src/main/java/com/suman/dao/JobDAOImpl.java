@@ -23,7 +23,7 @@ public class JobDAOImpl implements JobDAO {
 		this.sessionFactory = sessionFactory;
 
 	}
-	
+
 	@Transactional
 	public boolean save(Job job) {
 		try {
@@ -37,7 +37,7 @@ public class JobDAOImpl implements JobDAO {
 		}
 
 	}
-	
+
 	@Transactional
 	public boolean save(JobApplied jobApplied) {
 		try {
@@ -45,15 +45,14 @@ public class JobDAOImpl implements JobDAO {
 			sessionFactory.getCurrentSession().save(jobApplied);
 			return true;
 		} catch (Exception e) {
-			
+
 			System.out.println("not saved jobApplied in impl...");
 			e.printStackTrace();
 			return false;
 		}
-		
+
 	}
 
-	
 	@Transactional
 	public boolean update(Job job) {
 		try {
@@ -66,7 +65,7 @@ public class JobDAOImpl implements JobDAO {
 			return false;
 		}
 	}
-	
+
 	@Transactional
 	public boolean update(JobApplied jobApplied) {
 		try {
@@ -79,15 +78,13 @@ public class JobDAOImpl implements JobDAO {
 			return false;
 		}
 	}
-	
-	
+
 	@Transactional
 	public Job getJobDetails(String id) {
-		String hql = "from Job where jobid='" + id+"'";
+		String hql = "from Job where jobid='" + id + "'";
 
-		
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-	
+
 		List<Job> list = (List<Job>) query.list();
 
 		if (list != null && !list.isEmpty()) {
@@ -95,17 +92,16 @@ public class JobDAOImpl implements JobDAO {
 			return list.get(0);
 		} else {
 			return null;
-}
+		}
 	}
-	
+
 	@Transactional
 	public List<Job> getAllAvailableJobs() {
-		
+
 		System.out.println("getAll Available jobs in impl....");
-		String hql="from Job where status='"+"v'";
-		Query query=sessionFactory.getCurrentSession().createQuery(hql);
-		
-		
+		String hql = /* "from Job"; */"from Job where status='" + "v'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+
 		return query.list();
 	}
 
@@ -118,17 +114,17 @@ public class JobDAOImpl implements JobDAO {
 
 	@Transactional
 	public List<Job> getMyAppliedJobs(String userId) {
-		
-		String hql="from JobApplied where user_id='"+userId+"'";
-		Query query=sessionFactory.getCurrentSession().createQuery(hql);
+
+		String hql = "from Job where user_id='" + userId + "'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		return query.list();
 	}
 
 	@Transactional
 	public JobApplied getJobApplied(String userId, String jobId) {
-		String hql = " from JobApplied where user_id= " + userId + "' and job_id= '" + jobId;
-		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		return (JobApplied) query.list();
+		String hql = " from JobApplied where userid='" + userId + "'and jobid='" + jobId + "'";
+		 
+		return (JobApplied) sessionFactory.getCurrentSession().createQuery(hql).uniqueResult();
 
 	}
 
@@ -136,7 +132,6 @@ public class JobDAOImpl implements JobDAO {
 	public JobApplied getJobApplied(String jobId) {
 		String hql = "from JobApplied where job_id=" + jobId;
 
-		
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		@SuppressWarnings("unchecked")
 		List<JobApplied> list = (List<JobApplied>) query.list();
@@ -146,43 +141,31 @@ public class JobDAOImpl implements JobDAO {
 			return list.get(0);
 		} else {
 			return null;
-}
+		}
 
 	}
-	
 
 	public boolean delete(Job job) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	
-	
-	
-	
-	
-	
-	private int getMaxId()
-	{
-		int maxId=100;
+	private int getMaxId() {
+		int maxId = 100;
 		System.out.println("starting of the getMaxId in impl...");
 		try {
-			String hql="select max(jobid) from Job";
-			Query query=sessionFactory.getCurrentSession().createQuery(hql);
-			maxId=(Integer) query.uniqueResult();
+			String hql = "select max(jobid) from Job";
+			Query query = sessionFactory.getCurrentSession().createQuery(hql);
+			maxId = (Integer) query.uniqueResult();
 		} catch (HibernateException e) {
-			
+
 			System.out.println("It seems this is 1st record,setting initial id as 100");
-			maxId=100;
+			maxId = 100;
 			e.printStackTrace();
 		}
-		System.out.println("max id:"+maxId);
-		return maxId+1;
-		
-	}
-	
-	
+		System.out.println("max id:" + maxId);
+		return maxId + 1;
 
-		
+	}
 
 }
