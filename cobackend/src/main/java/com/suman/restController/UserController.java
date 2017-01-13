@@ -85,9 +85,12 @@ public class UserController {
 			user.setErrorMessage("successfully logged in...");
 
 			user.setIsOnline('Y');
-			session.setAttribute("loggedInUser", user);
-
+			/*session.setAttribute("loggedInUser", user);
+*/
 			session.setAttribute("loggedInUserID", user.getUserid());
+			
+			session.setAttribute("loggedInUserRole", user.getRole());
+			
 			/*friendDAO.setOnline(user.getUserid());
 */			userDAO.setOnline(user.getUserid());
 			System.out.println("authenticate  ...in user controller.java");
