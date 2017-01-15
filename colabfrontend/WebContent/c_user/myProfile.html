@@ -1,0 +1,90 @@
+
+<body>
+	<div class="generic-container" ng-controller="UserController as ctrl">
+
+ Current User:  {{currentUser}}
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<span class="lead">My Profile </span>
+				</div>
+				<div class="formcontainer">
+					<form ng-submit="ctrl.update()" name="myForm"
+						class="form-horizontal">
+
+							<div class="row">
+							<div class="form-group col-md-12">
+								<label class="col-md-2 control-lable" for="userid">ID</label>  
+								<div class="col-md-7">
+									<input type="text"  value= {{currentUser.userid}}  ng-bind="ctrl.user.userid" id="userid"
+										class="userid form-control input-sm"
+										placeholder="Enter your ID" required ng-minlength="3" />
+								</div>
+							</div>
+						</div>
+
+
+						<div class="row">
+							<div class="form-group col-md-12">
+								<label class="col-md-2 control-lable" for="username">Name</label>
+								<div class="col-md-7">
+									<input type="text"  value= {{currentUser.id}}  ng-model="ctrl.user.username" id="username"
+										class="username form-control input-sm"
+										placeholder="Enter your name" required ng-minlength="3" />
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="form-group col-md-12">
+								<label class="col-md-2 control-lable" for="password">Password</label>
+								<div class="col-md-7">
+									<input type="password" value= {{currentUser.password}} ng-model="ctrl.user.password"
+										id="password" class="username form-control input-sm"
+										placeholder="Enter your password" required ng-minlength="3" />
+								</div>
+							</div>
+						</div>
+
+
+						<div class="row">
+							<div class="form-group col-md-12">
+								<label class="col-md-2 control-lable" for="emailid">Email</label>
+								<div class="col-md-7">
+									<input type="email" value= {{currentUser.email}} ng-model="ctrl.user.emailid" id="emailid"
+										class="emailid form-control input-sm"
+										placeholder="Enter your Email" required />
+
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="form-group col-md-12">
+								<label class="col-md-2 control-lable" for="phno">Mobile</label>
+								<div class="col-md-7">
+									<input type="tel" value= {{currentUser.phno} ng-model="ctrl.user.phno" id="phno"
+										class="phno form-control input-sm"
+										placeholder="Enter your contact number" required />
+
+								</div>
+							</div>
+						</div>
+
+
+						<div class="row">
+							<div class="form-actions floatRight">
+								<input type="submit" value="Update"
+									class="btn btn-primary btn-sm">
+								
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+</body>
