@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 
 'job strict'; /* strictly follows the case i.e--case sensitive */
 
