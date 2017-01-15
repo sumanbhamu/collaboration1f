@@ -1,6 +1,20 @@
-<div ng-include src="'c_user/user_actions.html'"></div>
+<!-- <div ng-controller="UserController as ctrl">
+ --><br>currentUserid:{{currentUser.userid}}<br><br><br>
+	<div ng-show="currentUser.userid">
+		<div class="nav navbar-nav navbar-left">Welcome:
+			{{currentUser.username}} ||| <a href="#" ng-click="ctrl.logout()">Logout</a></div>
 
-<div>
- <h2> Welcome to Collaboration</h2>
-Message : {{message}}
+		<div class="nav navbar-nav navbar-center">You logged in as:
+			{{currentUser.role}}</div>
+	</div>
+
+
 </div>
+
+<div ng-hide="currentUser.userid" class="container">
+	<div class="nav navbar-nav navbar-right">
+		<a href="#/login">Login
+	</div>
+</div>
+
+
