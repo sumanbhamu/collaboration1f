@@ -1,6 +1,8 @@
 package com.suman.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -12,20 +14,21 @@ import org.springframework.stereotype.Component;
 public class Friend extends BaseDomain{
 	
 	@Id
-	
-	private String id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
 	private String user_id;
 	private String friend_id;
 
-	private char status;   /* status-new  */
+	private char status;   /* status-accept ,reject ,pending --req  */
 	
 	private char is_Online;
 
-	public String getId() {
+	
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
