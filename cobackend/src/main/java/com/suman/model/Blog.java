@@ -22,7 +22,7 @@ public class Blog extends BaseDomain{
 	private String user_id;  /* posted-by*/
 
 	private Date created_date;
-	private String blog_data;   /* blog_title   */
+	private String blog_data;   /* blog_title --little info  */
 
 	private String description;
 	
