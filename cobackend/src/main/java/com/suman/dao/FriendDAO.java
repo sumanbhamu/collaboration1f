@@ -7,17 +7,24 @@ import com.suman.model.Friend;
 public interface FriendDAO {
 
 	
-public boolean save(Friend friend); 
-	
+
+	public boolean save(Friend friend); 
 	public boolean update(Friend friend);
+	public boolean delete(String userID,String friendId);
 	
-	public boolean delete(String userID,String friendID);
+	public List<Friend> viewMyFriends(String userId); /*get my friends*/
 	
-	public List<Friend> viewMyFriends(String userID); /*listing user name/id*/
 	
-	public Friend getName(String name);
+	public List<Friend> getNewFriendReq(String userId); /*listing new friend requests*/
 	
-	public void setOnline(String userID);
+	public Friend get(String friendId);        /* get friends*/
 	
-	public void setOffline(String userID);
+	public void setOnline(String userId);
+	
+	public void setOffline(String userId);
+	
+	
+	public Friend get(String userID, String friendID);
+	
+	public List<Friend> getFriendReqSentByMe(String userId) ;
 }
