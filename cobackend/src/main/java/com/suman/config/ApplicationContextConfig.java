@@ -14,13 +14,21 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.suman.dao.BlogDAO;
+import com.suman.dao.BlogDAOImpl;
+import com.suman.dao.FriendDAO;
+import com.suman.dao.FriendDAOImpl;
 import com.suman.dao.JobDAO;
 import com.suman.dao.JobDAOImpl;
 import com.suman.dao.UserDAO;
 import com.suman.dao.UserDAO1;
 import com.suman.dao.UserDAOImpl;
 import com.suman.dao.UserDAOImpl1;
+import com.suman.model.Blog;
+import com.suman.model.BlogComment;
+import com.suman.model.Friend;
 import com.suman.model.Job;
+import com.suman.model.JobApplied;
 import com.suman.model.User;
 import com.suman.model.User12;
 
@@ -62,6 +70,10 @@ public class ApplicationContextConfig {
 		sessionBuilder.addProperties(getHibernateProperties());
 		sessionBuilder.addAnnotatedClass(User.class);
 		sessionBuilder.addAnnotatedClass(Job.class);
+		sessionBuilder.addAnnotatedClass(JobApplied.class);
+		sessionBuilder.addAnnotatedClass(Blog.class);
+		sessionBuilder.addAnnotatedClass(BlogComment.class);
+		sessionBuilder.addAnnotatedClass(Friend.class);
 		
 		sessionBuilder.addAnnotatedClass(User12.class);
 		
@@ -103,6 +115,34 @@ public class ApplicationContextConfig {
 		return new JobDAOImpl(sessionFactory);
 	}
 
+	
+	/*.......BLOG..........*/
+
+	@Autowired
+	@Bean(name = "blog")
+	public Blog getBlog() {
+		return new Blog();
+	}
+
+	@Autowired
+	@Bean(name = "blogDAO")
+	public BlogDAO getBlogDAO(SessionFactory sessionFactory) {
+		return new BlogDAOImpl(sessionFactory);
+	}
+
+	/*.......FRIEND.........*/
+
+	@Autowired
+	@Bean(name = "friend")
+	public Friend getFriend() {
+		return new Friend();
+	}
+
+	@Autowired
+	@Bean(name = "friendDAO")
+	public FriendDAO getFriendDAO(SessionFactory sessionFactory) {
+		return new FriendDAOImpl(sessionFactory);
+	}
 	
 	/* test*/
 	@Autowired
