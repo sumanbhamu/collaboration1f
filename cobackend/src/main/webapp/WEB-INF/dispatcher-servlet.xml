@@ -9,15 +9,13 @@
 	http://www.springframework.org/schema/context/spring-context-4.0.xsd
 	http://www.springframework.org/schema/mvc
 	http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
-	
-	
-        
-    <!-- this tag for to scan your controller package -->
+       
+    <!--  to scan controller package -->
 <context:component-scan base-package="com" />
 
 <mvc:annotation-driven />
 
-<!--  this tag for to map your views folder which all jsp is there in web-inf/view folder -->
+<!--   to map  views folder which all jsp is there in web-inf/views folder -->
 <bean  class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 <property name="prefix">
 <value>/WEB-INF/views/</value>
