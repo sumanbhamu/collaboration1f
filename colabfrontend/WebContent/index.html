@@ -18,7 +18,9 @@
 }
 </style>
 
-
+<!-- <script src="resources/angular.js"></script>
+<script src="resources/angular-route.js"></script>
+  -->
 
 
 <body data-ng-app="myApp">
@@ -43,12 +45,12 @@
 		</div>
 		</div>
 	</nav>
-<hr> <ul class="nav navbar-nav navbar-center" ng-controller="UserController">
+<hr> <ul class="nav navbar-nav navbar-left" ng-controller="UserController as ctrl">
     <li class="dropdown">
-        <a href="#/logout"  ng-hide="isLoggedIn" ><b>Logout</b></a>
-        <a href="#/login"   ng-show="isLoggedIn" ><b>Login</b> <span class="caret"></span></a>
+        <a ng-click="ctrl.logout()"  ng-show="currentUser.userid" ><b>Logout</b></a>
+        <a href="#/login"   ng-hide="currentUser.userid" ><b>Login</b> <span class="caret"></span></a>
     </li>
-    <li>{{isLoggedIn}}</li>
+   
 </ul><hr>
 	<hr>
 
@@ -65,7 +67,7 @@
 			<ul class="dropdown-menu">
 				<li><a href="#/search_job">Search Job</a></li>
 				<li><a href="#">View Applied Job</a></li>
-				<li><a href="#/post_job">Post New Job</a></li>
+				<li><a href="#/postJob">Post New Job</a></li>
 			</ul>
 		</div>
 
@@ -90,7 +92,15 @@
 				Blog<span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu">
-				<li><a href="#/blog">blog</a></li>
+								
+				
+				
+				<li><a href="#/listBlog">List Blog</a></li>
+				
+				<li><a href="#/create_blog">Create Blog</a></li>
+				
+				
+				<li><a href="#/blog">Blog</a></li>
 				
 				
 			</ul>
@@ -121,6 +131,9 @@
 	<div data-ng-view></div>
 </body>
 
+
+
+
 <script src="app.js"></script>
   
 <script src="c_home/HomeController.js"></script>
@@ -128,13 +141,24 @@
 <script src="c_user/UserService.js"></script>
 
 <script src="c_blog/BlogController.js"></script>
+<script src="c_blog/BlogService.js"></script>
+
+
+
 <script src="c_friend/FriendController.js"></script>
-<script src="c_job/JobController.js"></script>
+
 <script src="c_user/LoginController.js"></script>
 <script src="c_user/LogoutController.js"></script>
 
 
 <script src="c_job/JobController.js"></script>
 <script src="c_job/JobService.js"></script>
+
+<script src="c_chat_forum/ChatForumController.js"></script>
+ <script src="c_chat_forum/ChatForumService.js"></script>
+ 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.1/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 
 </html>
