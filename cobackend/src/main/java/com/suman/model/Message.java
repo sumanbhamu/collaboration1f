@@ -3,13 +3,18 @@ package com.suman.model;
 public class Message {
 	
 
-		private String message;
+	private String message;
+	  private int id;
 	
 		
 		/* calling constructor*/
 		
-		public Message(String message){
+	  public Message() {
 			
+		}
+	  
+		public Message(int id, String message){
+			this.id = id;
 			this.message=message;
 		}
 		
@@ -18,6 +23,14 @@ public class Message {
 		}
 		public void setMessage(String message) {
 			this.message = message;
+		}
+
+		public int getId() {
+			return id;
+		}
+
+		public void setId(int id) {
+			this.id = id;
 		}
 		
 }
