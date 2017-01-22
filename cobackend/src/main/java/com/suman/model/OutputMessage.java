@@ -9,7 +9,7 @@ public class OutputMessage extends Message {
 		
 		
 		public OutputMessage(Message original,Date time) {
-			super(original.getMessage());
+			super(original.getId(),original.getMessage());
 			this.time = time;
 		}
 
