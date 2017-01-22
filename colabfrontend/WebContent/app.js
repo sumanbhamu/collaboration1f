@@ -15,7 +15,30 @@ app.config(function($routeProvider) {
 		templateUrl : 'c_about/aboutUs.html',
 
 	})
+	
+	.when('/myProfile',{
+		templateUrl:'c_user/myProfile.html',
+		controller:'UserController'
 		
+	})
+	/* ....admin...... */
+	.when('/adminHome',{
+		templateUrl:'c_user/adminHome.html',
+		controller:'UserController'
+		
+	})
+		
+	.when('/view_all_users',{
+		templateUrl:'c_user/view_all_users.html',
+		controller:'UserController'
+		
+	})
+
+	.when('/view_all_jobs',{
+		templateUrl:'c_job/view_all_jobs.html',
+		controller:'JobController'
+		
+	})
 	/* ....register...... */
 
 	.when('/register', {
@@ -29,6 +52,25 @@ app.config(function($routeProvider) {
 
 	.when('/blog', {
 		templateUrl : 'c_blog/blog.html',
+		controller : 'BlogController'
+
+	})
+	
+	.when('/view_blog', {
+		templateUrl : 'c_blog/view_blog.html',
+		controller : 'BlogController'
+
+	})
+	
+	.when('/listBlog', {
+		templateUrl : 'c_blog/listBlog.html',
+		controller : 'BlogController'
+
+	})
+
+	
+	.when('/create_blog', {
+		templateUrl : 'c_blog/create_blog.html',
 		controller : 'BlogController'
 
 	})
@@ -49,8 +91,8 @@ app.config(function($routeProvider) {
 
 	})
 	
-	.when('/post_job',{
-		templateUrl:'c_job/post_job.html',
+	.when('/postJob',{
+		templateUrl:'c_job/postJob.html',
 		controller:'JobController'
 		
 	})
@@ -77,18 +119,26 @@ app.config(function($routeProvider) {
 		controller : 'HomeController'
 
 	})
+	
+	/* ....Chat Forum...... */
+	.when('/chat_forum',{
+		templateUrl:'c_chat_forum/chat_forum.html',
+		controller:'ChatForumController'
+
+	})
 
 	.otherwise({
 		redirectTo : '/'
 	});
 });
+
 app.run( function ($rootScope, $location,$cookieStore, $http) {
 
 	 $rootScope.$on('$locationChangeStart', function (event, next, current) {
 		 console.log("$locationChangeStart")
 		 //http://localhost:8080/Collaboration/addjob
 	        // redirect to login page if not logged in and trying to access a restricted page
-	        var restrictedPage = $.inArray($location.path(), ['','/','/search_job','/view_blog','/login', '/register','/list_blog']) === -1;
+	        var restrictedPage = $.inArray($location.path(), ['','/','/adminHome','/search_job','/view_blog','/login', '/register','/list_blog']) === -1;
 		 console.log("Navigating to page :" + $location.path())
 	        console.log("restrictedPage:" +restrictedPage)
 	        console.log("currentUser:" +$rootScope.currentUser)
@@ -111,14 +161,13 @@ app.run( function ($rootScope, $location,$cookieStore, $http) {
 	        	{
 	        	
 				 var role = $rootScope.currentUser.role;
-				 var userRestrictedPage = $.inArray($location.path(), ["/post_job"]) == 0;
+				 var userRestrictedPage = $.inArray($location.path(), ["/postJob"]) == 0;
 				 
-				 if(userRestrictedPage && role!='admin' )
+				 if(userRestrictedPage && role!='Admin' )
 					 {
 					 
 					  alert("You can not do this operation as you are logged as : " + role )
 					   $location.path('/login');
-					 
 					 }
 				     
 	        	
@@ -129,9 +178,9 @@ app.run( function ($rootScope, $location,$cookieStore, $http) {
 	 
 	 
 	 // keep user logged in after page refresh
-    $rootScope.currentUser = $cookieStore.get('currentUser') || {};
-    if ($rootScope.currentUser) {
-        $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.currentUser; 
-    }
+   $rootScope.currentUser = $cookieStore.get('currentUser') || {};
+   if ($rootScope.currentUser) {
+       $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.currentUser; 
+   }
 
 });
