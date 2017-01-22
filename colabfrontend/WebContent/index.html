@@ -3,8 +3,9 @@
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-cookies.js"></script>
-   
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-cookies.js"></script>
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
@@ -40,18 +41,20 @@
 				<a class="navbar-brand" href="#">WebSiteName</a>
 			</div>
 
-				
-
+			
 		</div>
 		</div>
 	</nav>
-<hr> <ul class="nav navbar-nav navbar-left" ng-controller="UserController as ctrl">
-    <li class="dropdown">
-        <a ng-click="ctrl.logout()"  ng-show="currentUser.userid" ><b>Logout</b></a>
-        <a href="#/login"   ng-hide="currentUser.userid" ><b>Login</b> <span class="caret"></span></a>
-    </li>
-   
-</ul><hr>
+	<hr>
+	<ul class="nav navbar-nav navbar-left"
+		ng-controller="UserController as ctrl">
+		<li class="dropdown"><a ng-click="ctrl.logout()"
+			ng-show="currentUser.userid"><b>Logout</b></a> <a href="#/login"
+			ng-hide="currentUser.userid"><b>Login</b> <span class="caret"></span></a>
+		</li>
+
+	</ul>
+	<hr>
 	<hr>
 
 	<ul class="nav nav-pills">
@@ -59,70 +62,82 @@
 
 		<li><a href="#/aboutUs">About Us</a></li>
 		<!-- <li><a href="#/post_job">Job</a></li> -->
-<li>		<div class="dropdown">
-			<button class="btn btn-primary dropdown-toggle" type="button"
-				data-toggle="dropdown">
-				Job<span class="caret"></span>
-			</button>
-			<ul class="dropdown-menu">
-				<li><a href="#/search_job">Search Job</a></li>
-				<li><a href="#">View Applied Job</a></li>
-				<li><a href="#/postJob">Post New Job</a></li>
-			</ul>
-		</div>
+		<li>
+			<div class="dropdown">
+				<button class="btn btn-primary dropdown-toggle" type="button"
+					data-toggle="dropdown">
+					Job<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li><a href="#/search_job">Search Job</a></li>
+					<li><a href="#">View Applied Job</a></li>
+					<li><a href="#/postJob">Post New Job</a></li>
+				</ul>
+			</div>
 
-</li>
-<li>		
-		<div class="dropdown">
-			<button class="btn btn-primary dropdown-toggle" type="button"
-				data-toggle="dropdown">
-				Friend<span class="caret"></span>
-			</button>
-			<ul class="dropdown-menu">
-				<li><a href="#/friend">friends</a></li>
-				<li><a href="#">View</a></li>
-				
-			</ul>
-		</div>
-</li>
-<li>
-		<div class="dropdown">
-			<button class="btn btn-primary dropdown-toggle" type="button"
-				data-toggle="dropdown">
-				Blog<span class="caret"></span>
-			</button>
-			<ul class="dropdown-menu">
-								
-				
-				
-				<li><a href="#/listBlog">List Blog</a></li>
-				
-				<li><a href="#/create_blog">Create Blog</a></li>
-				
-				
-				<li><a href="#/blog">Blog</a></li>
-				
-				
-			</ul>
-		</div>
-</li>
-<li>
-		<div class="dropdown">
-			<button class="btn btn-primary dropdown-toggle" type="button"
-				data-toggle="dropdown">
-				Sign-Up<span class="caret"></span>
-			</button>
-			<ul class="dropdown-menu">
-				<li><a href="#/register">Register</a></li>
-			</ul>
-		</div>
-</li>
+		</li>
+		<li>
+			<div class="dropdown">
+				<button class="btn btn-primary dropdown-toggle" type="button"
+					data-toggle="dropdown">
+					Friend<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li><a href="#/friend">friends</a></li>
+					<li><a href="#">View</a></li>
+
+				</ul>
+			</div>
+		</li>
+		<li>
+			<div class="dropdown">
+				<button class="btn btn-primary dropdown-toggle" type="button"
+					data-toggle="dropdown">
+					Blog<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
 
 
 
+					<li><a href="#/listBlog">List Blog</a></li>
+
+					<li><a href="#/create_blog">Create Blog</a></li>
+
+
+					<li><a href="#/blog">Blog</a></li>
+
+
+				</ul>
+			</div>
+		</li>
+		<li>
+			<div class="dropdown">
+				<button class="btn btn-primary dropdown-toggle" type="button"
+					data-toggle="dropdown">
+					Sign-Up<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li><a href="#/register">Register</a></li>
+				</ul>
+			</div>
+		</li>
+
+
+
+		<li>
+			<div class="dropdown">
+				<button class="btn btn-primary dropdown-toggle" type="button"
+					data-toggle="dropdown">
+					Chat-Forum<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li><a href="#/chat_forum">chat-forum</a></li>
+				</ul>
+			</div>
+		</li>
 
 	</ul>
-	
+
 
 	<hr>
 
@@ -130,12 +145,16 @@
 
 	<div data-ng-view></div>
 </body>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.0/angular-cookies.js"></script>
+ -->
 
-
-
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.1/sockjs.js"></script>
 
 <script src="app.js"></script>
-  
+
 <script src="c_home/HomeController.js"></script>
 <script src="c_user/UserController.js"></script>
 <script src="c_user/UserService.js"></script>
@@ -154,11 +173,16 @@
 <script src="c_job/JobController.js"></script>
 <script src="c_job/JobService.js"></script>
 
-<script src="c_chat_forum/ChatForumController.js"></script>
- <script src="c_chat_forum/ChatForumService.js"></script>
- 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.1/sockjs.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+
+
+
+<script src="c_chat_forum/ChatForumController.js"></script>
+<script src="c_chat_forum/ChatForumService.js"></script>
+
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.js"></script>
+ -->
+
 
 </html>
