@@ -27,5 +27,5 @@ public boolean save(Blog blog);
     List<BlogComment> viewMyBlogs(String userId);  /*posted by -list individual blog*/
     
     
-    List<BlogComment> viewComments(String blogId);   // list of comments
+    List<BlogComment> viewComments();   // list of comments
 }

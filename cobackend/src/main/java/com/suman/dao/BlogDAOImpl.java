@@ -90,13 +90,15 @@ public class BlogDAOImpl implements BlogDAO {
 	}
 
 	@Transactional
-	public List<BlogComment> viewMyBlogs(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<BlogComment> viewMyBlogs(String id) {
+		String hql = " from BlogComment where blog_id=" + id;
+		@SuppressWarnings("rawtypes")
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		return query.list();
 	}
 
 	@Transactional
-	public List<BlogComment> viewComments(String blogId) {
+	public List<BlogComment> viewComments() {
 		
 		String hql = " from BlogComment";
 		
