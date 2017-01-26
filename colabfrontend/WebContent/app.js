@@ -74,6 +74,13 @@ app.config(function($routeProvider) {
 		controller : 'BlogController'
 
 	})
+	
+	
+	.when('/view_blog_comment', {
+		templateUrl : 'c_blog/view_blog_comment.html',
+		controller : 'BlogController'
+
+	})
 
 	/* ....friend...... */
 
