@@ -1,0 +1,50 @@
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+</head>
+
+<div class="container" ng-controller="BlogController as ctrl">
+
+	<div class="form-group">
+		<label>{{selectedBlog.title}}</label><br> Written By:<label>{{selectedBlog.user_id}}</label><br>
+		on <label>{{selectedBlog.created_date}}</label><br> <label>{{selectedBlog.description}}</label><br>
+	</div>
+
+	<!-- the comment box -->
+	<div class="well">
+		<form ng-submit="ctrl.doComment(selectedBlog.blog_id)" name="myForm"
+			class="form-horizontal">
+
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label class="col-md-2 control-lable" for="blog_comment_data">Leave
+						a Comment:</label>
+
+					<textarea rows="3" class="form-control"
+						ng-model="ctrl.blogcomment.blog_comment_data"
+						id="blog_comment_data"></textarea>
+
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="form-actions floatRight">
+					<input type="submit" value="Comment" class="btn btn-primary">
+				</div>
+			</div>
+
+		</form>
+	</div>
+
+	<div ng-repeat="blogcomment in ctrl.blogcomments">
+		<p>
+			<span class="fa fa-comments">
+				{{blogcomment.blog_comment_data}}</span>
+		</p>
+		<br />
+		<p>By: {{blogcomment.user_id}} On: {{blogcomment.bcomment_date}}</p><hr>
+	</div>
+</div>
+
+
