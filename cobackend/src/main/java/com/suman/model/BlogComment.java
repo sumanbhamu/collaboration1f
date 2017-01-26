@@ -1,6 +1,6 @@
 package com.suman.model;
 
-import java.util.Date;
+//import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -18,7 +18,7 @@ public class BlogComment extends BaseDomain{
 	private String blog_id;
 	private String user_id;
 	private String blog_comment_data;  //comments
-	private Date bcomment_date;
+	private String bcomment_date;
 	public String getId() {
 		return id;
 	}
@@ -43,10 +43,10 @@ public class BlogComment extends BaseDomain{
 	public void setBlog_comment_data(String blog_comment_data) {
 		this.blog_comment_data = blog_comment_data;
 	}
-	public Date getBcomment_date() {
+	public String getBcomment_date() {
 		return bcomment_date;
 	}
-	public void setBcomment_date(Date bcomment_date) {
+	public void setBcomment_date(String bcomment_date) {
 		this.bcomment_date = bcomment_date;
 	}
 	
