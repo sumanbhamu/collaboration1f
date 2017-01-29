@@ -16,7 +16,7 @@ app.config(function($routeProvider) {
 
 	})
 	
-	.when('/myProfile',{
+	.when('/updateUser',{
 		templateUrl:'c_user/myProfile.html',
 		controller:'UserController'
 		
@@ -75,7 +75,6 @@ app.config(function($routeProvider) {
 
 	})
 	
-	
 	.when('/view_blog_comment', {
 		templateUrl : 'c_blog/view_blog_comment.html',
 		controller : 'BlogController'
@@ -86,6 +85,19 @@ app.config(function($routeProvider) {
 
 	.when('/friend', {
 		templateUrl : 'c_friend/friend.html',
+		controller : 'FriendController'
+
+	})
+
+	
+	.when('/view_friend', {
+		templateUrl : 'c_friend/view_friend.html',
+		controller : 'FriendController'
+
+	})
+	
+	.when('/list_friend', {
+		templateUrl : 'c_friend/list_friend.html',
 		controller : 'FriendController'
 
 	})
@@ -127,6 +139,61 @@ app.config(function($routeProvider) {
 
 	})
 	
+	
+	/* ....Event...... */
+	
+	.when('/my_event',{
+		templateUrl:'c_event/my_event.html',
+		controller:'EventController'
+	})
+	
+	.when('/create_event',{
+		templateUrl:'c_event/create_event.html',
+		controller:'EventController'
+	})
+	
+	.when('/list_event',{
+		templateUrl:'c_event/list_event.html',
+		controller:'EventController'
+	})
+	
+	.when('/view_event',{
+		templateUrl:'c_event/view_event.html',
+		controller:'EventController'
+	})
+	
+	.when('/view_all_events',{
+		templateUrl:'c_event/view_all_events.html',
+		controller:'EventController'
+	})
+	
+	/* ....Forum....... */
+	
+	.when('/create_forum',{
+		templateUrl:'c_forum/create_forum.html',
+		controller:'ForumController'
+	})
+	
+	.when('/list_forum',{
+		templateUrl:'c_forum/list_forum.html',
+		controller:'ForumController'
+	})
+	
+	.when('/view_forum',{
+		templateUrl:'c_forum/view_forum.html',
+		controller:'ForumController'
+	})
+	
+	.when('/my_forum',{
+		templateUrl:'c_forum/my_forum.html',
+		controller:'ForumController'
+	})
+	
+	.when('/view_all_forums',{
+		templateUrl:'c_forum/view_all_forums.html',
+		controller:'ForumController'
+	})
+	
 	/* ....Chat Forum...... */
 	.when('/chat_forum',{
 		templateUrl:'c_chat_forum/chat_forum.html',
@@ -138,14 +205,13 @@ app.config(function($routeProvider) {
 		redirectTo : '/'
 	});
 });
-
 app.run( function ($rootScope, $location,$cookieStore, $http) {
 
 	 $rootScope.$on('$locationChangeStart', function (event, next, current) {
 		 console.log("$locationChangeStart")
 		 //http://localhost:8080/Collaboration/addjob
-	        // redirect to login page if not logged in and trying to access a restricted page
-	        var restrictedPage = $.inArray($location.path(), ['','/','/adminHome','/search_job','/view_blog','/login', '/register','/list_blog']) === -1;
+	        // redirect to login page if not logged in and trying to access a restricted page(these pgs r not retricted)
+	        var restrictedPage = $.inArray($location.path(), ['','/','/adminHome','/search_job','/view_blog','/login', '/register','/list_blog','/aboutUs']) === -1;
 		 console.log("Navigating to page :" + $location.path())
 	        console.log("restrictedPage:" +restrictedPage)
 	        console.log("currentUser:" +$rootScope.currentUser)
