@@ -43,7 +43,7 @@ public class ForumDAOImpl implements ForumDAO {
 	}
 
 	@Transactional
-	public boolean delete(String forumID) {
+	public boolean delete(int forumID) {
 		try {
 			sessionFactory.getCurrentSession().delete(forumID);
 			return true;
@@ -54,8 +54,8 @@ public class ForumDAOImpl implements ForumDAO {
 	}
 
 	@Transactional
-	public Forum get(String forumID) {
-		String hql = "from Forum where forum_id=" + "'" + forumID + "'";
+	public Forum get(int forumID) {
+		String hql = "from Forum where forum_id=" +  forumID ;
 
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 
