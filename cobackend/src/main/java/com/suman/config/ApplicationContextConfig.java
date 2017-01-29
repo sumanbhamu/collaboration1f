@@ -16,6 +16,12 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.suman.dao.BlogDAO;
 import com.suman.dao.BlogDAOImpl;
+import com.suman.dao.ChatDAO;
+import com.suman.dao.ChatDAOImpl;
+import com.suman.dao.EventDAO;
+import com.suman.dao.EventDAOImpl;
+import com.suman.dao.ForumDAO;
+import com.suman.dao.ForumDAOImpl;
 import com.suman.dao.FriendDAO;
 import com.suman.dao.FriendDAOImpl;
 import com.suman.dao.JobDAO;
@@ -26,6 +32,8 @@ import com.suman.dao.UserDAOImpl;
 import com.suman.dao.UserDAOImpl1;
 import com.suman.model.Blog;
 import com.suman.model.BlogComment;
+import com.suman.model.Event;
+import com.suman.model.Forum;
 import com.suman.model.Friend;
 import com.suman.model.Job;
 import com.suman.model.JobApplied;
@@ -74,6 +82,8 @@ public class ApplicationContextConfig {
 		sessionBuilder.addAnnotatedClass(Blog.class);
 		sessionBuilder.addAnnotatedClass(BlogComment.class);
 		sessionBuilder.addAnnotatedClass(Friend.class);
+		sessionBuilder.addAnnotatedClass(Event.class);
+		sessionBuilder.addAnnotatedClass(Forum.class);
 		
 		sessionBuilder.addAnnotatedClass(User12.class);
 		
@@ -144,6 +154,45 @@ public class ApplicationContextConfig {
 		return new FriendDAOImpl(sessionFactory);
 	}
 	
+	
+	/*.......EVENT.........*/
+
+	@Autowired
+	@Bean(name = "event")
+	public Event getEvent() {
+		return new Event();
+	}
+
+	@Autowired
+	@Bean(name = "eventDAO")
+	public EventDAO getEventDAO(SessionFactory sessionFactory) {
+		return new EventDAOImpl(sessionFactory);
+	}
+	
+	
+	
+	/*.......FORUM.........*/
+
+	@Autowired
+	@Bean(name = "forum")
+	public Forum getForum() {
+		return new Forum();
+	}
+
+	@Autowired
+	@Bean(name = "forumDAO")
+	public ForumDAO getForumDAO(SessionFactory sessionFactory) {
+		return new ForumDAOImpl(sessionFactory);
+	}
+
+	
+	/*.......CHAT.........*/
+
+	@Autowired
+	@Bean(name = "chatDAO")
+	public ChatDAO getChatDAO(SessionFactory sessionFactory) {
+		return new ChatDAOImpl(sessionFactory);
+	}
 	/* test*/
 	@Autowired
 	@Bean(name = "user12")
