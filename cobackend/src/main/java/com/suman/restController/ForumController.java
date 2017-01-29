@@ -22,7 +22,7 @@ import com.suman.model.User;
 @RestController
 public class ForumController {
 
-//private static final Logger logger	= LoggerFactory.getLogger(ForumController.class);
+
 	
 	@Autowired
 	ForumDAO forumDAO;
@@ -47,7 +47,7 @@ public class ForumController {
 			String looggedInUserID=(String) httpSession.getAttribute("loggedInUserID");
 			Date dt=new java.util.Date();
 			forum.setCreated_date(dt.toString());
-			//user=(User) httpSession.getAttribute("loggedInUser");
+			
 			forum.setUser_name(looggedInUserID);
 			forum.setUser_id(looggedInUserID);
 			forumDAO.save(forum);			
