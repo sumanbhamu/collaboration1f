@@ -46,7 +46,7 @@ public class EventController {
 			event.setHeld_date(dt.toString());
 			String loggeddInUserId = (String) httpSession.getAttribute("loggedInUserID");
 			
-			//user= (User) httpSession.getAttribute("loggedInUserID");
+			
 			event.setUser_name(loggeddInUserId);
 			eventDAO.save(event);			
 		}
