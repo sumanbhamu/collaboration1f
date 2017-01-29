@@ -1,8 +1,8 @@
 package com.suman.model;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -14,18 +14,38 @@ import org.springframework.stereotype.Component;
 public class Forum extends BaseDomain{
 
 	@Id
-	
-	private String forum_id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int forum_id;
 	private String user_id;
-	private Date created_date;
+	
+	private String user_name;
+	
+	public String getUser_name() {
+		return user_name;
+	}
+
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
+
+	private String created_date;
 	
 	private String forum_data;
+	private String topic;
 
-	public String getForum_id() {
+	public String gettopic() {
+		return topic;
+	}
+
+	public void settopic(String topic) {
+		this.topic = topic;
+	}
+
+	public int getForum_id() {
 		return forum_id;
 	}
 
-	public void setForum_id(String forum_id) {
+	public void setForum_id(int forum_id) {
 		this.forum_id = forum_id;
 	}
 
@@ -37,11 +57,11 @@ public class Forum extends BaseDomain{
 		this.user_id = user_id;
 	}
 
-	public Date getCreated_date() {
+	public String getCreated_date() {
 		return created_date;
 	}
 
-	public void setCreated_date(Date created_date) {
+	public void setCreated_date(String created_date) {
 		this.created_date = created_date;
 	}
 
