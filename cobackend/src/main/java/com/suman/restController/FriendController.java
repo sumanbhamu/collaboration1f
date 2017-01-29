@@ -80,7 +80,7 @@ public class FriendController {
 	
 	/*ADD FRIENDS................*/
 
-	@RequestMapping(value = "/addFriend/{friendId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/addFriend/{friendId}", method = RequestMethod.POST)
 	public ResponseEntity<Friend> sendFriendReq(@PathVariable("friendId") String friendId) {
 		
 		String loggedInUserId = (String) session.getAttribute("loggedInUserID");
