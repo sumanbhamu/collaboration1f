@@ -1,0 +1,27 @@
+
+<div class="container" ng-controller="EventController as ctrl">
+Here is the list of events
+
+<table class="table table-hover">
+             
+      <tr>
+      <th>Event Id</th>
+	<th>Title</th>
+	<th>Information</th>
+	<th>Date Posted</th>
+	<th>Posted By</th>
+	 </tr>
+  <tr ng-repeat="event in ctrl.events">
+      <td>{{event.event_id}}</td>
+      <td>{{event.event_name}}</td>
+      <td>{{event.description}}</td>
+       <td>{{event.held_date}}</td>
+        <td>{{event.user_name}}</td>
+           		
+         	
+      </tr>
+  
+	 </table>
+
+
+</div>
