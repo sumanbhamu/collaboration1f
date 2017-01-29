@@ -15,7 +15,6 @@ app
 							
 
 							console.log('In LoginController.....usercontroler.js....... ')
-									//$scope.message="You successfully logged In"
 										
 									$rootScope.isLoggedIn="true"
 							
@@ -74,19 +73,23 @@ app
 								
 							};
 
-							self.myProfile = function() {
+							self.updateUser = function(user) {
 								console.log("myProfile...")
-								UserService
-										.myProfile()
-										.then(
+								
+								UserService.updateUser(user)
+								
+								
+									.then(
+												self.fetchAllUsers,
 												function(d) {
 													self.user = d;
+													console.log("updateUser...in user controller.js")
 													$location
 															.path("/myProfile")
 												},
 												function(errResponse) {
 													console
-															.error('Error while fetch profile.');
+															.error('Error while update profile.');
 												});
 							};
 
@@ -99,7 +102,7 @@ app
 													self.user = d;
 													self.fetchAllUsers
 													$location
-															.path("/manage_users")
+															.path("/view_all_users")
 													alert(self.user.errorMessage)
 
 												},
@@ -117,20 +120,13 @@ app
 										function(d) {
 											self.user = d;
 											self.fetchAllUsers
-											$location.path("/manage_users")
+											$location.path("/view_all_users")
 											alert(self.user.errorMessage)
 
 										}, null);
 							};
 
-							self.updateUser = function(user, id) {
-								console.log("updateUser...")
-								UserService.updateUser(user, id).then(
-										self.fetchAllUsers, null);
-							};
-
-							//self.fetchAllUsers();
-
+							
 							self.login = function() {
 								{
 									console.log('login validation????????',self.user);
@@ -170,9 +166,16 @@ app
 																		'currentUser',
 																		$rootScope.currentUser);
 														
-											$location.path('/');
-									    	console.log("Valid credentials. Navigating to home page")
-									
+														if(self.user.emailid=="ADMIN@gmail.com"&&self.user.password=="ADMIN"){
+															$location.path('/adminHome')
+															console.log("Valid credentials. Navigating to adminHome page")
+															
+														}
+														else if ($rootScope.currentUser) {
+															$location.path('/');
+															console.log("Valid credentials. Navigating to home page")
+														}
+										
 									}
 								},
 									function(errResponse) {
@@ -217,7 +220,7 @@ app
 									errorCode : '',
 									errorMessage : '',/* file : '' */
 								};
-								//$scope.myForm.$setPristine(); // reset Form
+								
 							};
 
 						} ]);
