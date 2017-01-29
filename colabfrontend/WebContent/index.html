@@ -19,11 +19,6 @@
 }
 </style>
 
-<!-- <script src="resources/angular.js"></script>
-<script src="resources/angular-route.js"></script>
-  -->
-
-
 <body data-ng-app="myApp">
 
 	<h1>
@@ -41,7 +36,7 @@
 				<a class="navbar-brand" href="#">WebSiteName</a>
 			</div>
 
-			
+
 		</div>
 		</div>
 	</nav>
@@ -84,7 +79,8 @@
 				</button>
 				<ul class="dropdown-menu">
 					<li><a href="#/friend">friends</a></li>
-					<li><a href="#">View</a></li>
+					<li><a href="#/view_friend">View Friends</a></li>
+					<li><a href="#/list_friend">list Friends</a></li>
 
 				</ul>
 			</div>
@@ -122,6 +118,27 @@
 			</div>
 		</li>
 
+		<li class="dropdown"><button class="btn btn-primary dropdown-toggle" type="button"
+					data-toggle="dropdown">
+					Events<span class="caret"></span></button>
+			<ul class="dropdown-menu">
+				<li><a href="#/create_event">Create Event</a></li>
+				<li class="divider"></li>
+				<li><a href="#/list_event">My Events</a></li>
+			</ul></li>
+			
+			
+			
+			<li class="dropdown"><button class="btn btn-primary dropdown-toggle" type="button"
+					data-toggle="dropdown">
+					Forum<span class="caret"></span></button>
+			<ul class="dropdown-menu">
+				<li><a href="#/list_forum">List Forum</li>
+				<li class="divider"></li>
+				<li><a href="#/create_forum">Create Forum</a></li>
+								
+			</ul></li>
+			
 
 
 		<li>
@@ -145,8 +162,7 @@
 
 	<div data-ng-view></div>
 </body>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.0/angular-cookies.js"></script>
- -->
+
 
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
@@ -165,6 +181,10 @@
 
 
 <script src="c_friend/FriendController.js"></script>
+<script src="c_friend/FriendService.js"></script>
+
+<script src="c_friend/RequestController.js"></script>
+<script src="c_friend/RequestService.js"></script>
 
 <script src="c_user/LoginController.js"></script>
 <script src="c_user/LogoutController.js"></script>
@@ -173,6 +193,12 @@
 <script src="c_job/JobController.js"></script>
 <script src="c_job/JobService.js"></script>
 
+<script src="c_event/EventController.js"></script>
+<script src="c_event/EventService.js"></script>
+
+
+<script src="c_forum/ForumController.js"></script>
+<script src="c_forum/ForumService.js"></script>
 
 
 
@@ -181,8 +207,7 @@
 <script src="c_chat_forum/ChatForumService.js"></script>
 
 
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.js"></script>
- -->
+
 
 
 </html>
