@@ -1,0 +1,39 @@
+
+<div class="container" ng-controller="ForumController as ctrl">
+Here is the list of Forum
+
+<table class="table table-hover">
+             
+      <tr>
+    <th>Forum Id</th>
+	<th>Topic</th>
+	<th>Content</th>
+	<th>Creation Date</th>
+	<th colspan="2">Posted By</th>
+	
+  </tr>
+  <tr>
+    <th></th>
+	<th></th>
+	<th></th>
+	<th></th>
+	<th>User Id</th>
+	<th>User Name</th>
+	<th></th>
+	
+  </tr>
+  <tr ng-repeat="forum in ctrl.forums">
+      <td>{{forum.forum_id}}</td>
+      <td>{{forum.topic}}</td>
+      <td>{{forum.forum_data}}</td>
+       <td>{{forum.created_date}}</td>
+        <td>{{forum.user_id}}</td>
+        <td>{{forum.user_name}}</td>
+           		
+   	
+      </tr>
+  
+	 </table>
+
+</div>
+<br/><br/><br/><br/>
