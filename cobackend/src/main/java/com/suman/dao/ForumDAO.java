@@ -10,9 +10,9 @@ public interface ForumDAO {
 	
 	public boolean update(Forum forum);
 	
-	public boolean delete(String forumID);
+	public boolean delete(int forumID);
 	
-	public Forum get(String forumID);
+	public Forum get(int forumID);
 	
 	
 	
