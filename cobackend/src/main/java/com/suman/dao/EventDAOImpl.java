@@ -55,9 +55,9 @@ public class EventDAOImpl implements EventDAO {
 
 	@Transactional
 	public Event get(int eventID) {
-		String hql = "from Event where event_id=" + "'" + eventID + "'";
+		String hql = "from Event where event_id=" + eventID ;
 
-		@SuppressWarnings("rawtypes")
+		
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		@SuppressWarnings("unchecked")
 		List<Event> list = (List<Event>) query.list();
