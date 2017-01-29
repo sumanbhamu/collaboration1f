@@ -1,0 +1,58 @@
+<div class="container" ng-controller="RequestController as ctrl">
+	Find friends
+
+	<div class="form-group"></div>
+	Search
+
+	<p>
+		<input type="text" ng-model="user.ctrl.username">
+	</p>
+
+	<table class="table table-hover">
+
+		<tr>
+			
+			<th>User Id</th>
+			<th>User Name</th>
+			<th>Email</th>
+			<th>Contact</th>
+			<th>Role</th>
+			<th>Is Online</th>
+			<th></th>
+			<th></th>
+
+
+		</tr>
+		<tr ng-repeat="user in ctrl.users | filter:user.ctrl.username">
+			<!--  <td><img src="{{user.userid}}.jpg"></td> -->
+			<td>{{user.userid}}</td>
+			<td>{{user.username}}</td>
+			<td>{{user.emailid}}</td>
+			<td>{{user.phno}}</td>
+			<td>{{user.role}}</td>
+			<td>{{user.isOnline}}</td>
+
+
+			<td><button type="button"
+					ng-click="ctrl.sendFriendRequest(user.userid)"
+					class="btn btn-warning btn-sm">Send Friend Request</button></td>
+
+			<td><a href="#/chat" class="btn btn-danger btn-sm">Chat</a></td>
+
+
+		</tr>
+
+	</table>
+
+
+</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+
