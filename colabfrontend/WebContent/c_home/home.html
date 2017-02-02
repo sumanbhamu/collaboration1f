@@ -1,20 +1,80 @@
-<!-- <div ng-controller="UserController as ctrl">
- --><br>currentUserid:{{currentUser.userid}}<br><br><br>
+<div ng-controller="UserController as ctrl">
+	
 	<div ng-show="currentUser.userid">
-		<div class="nav navbar-nav navbar-left">Welcome:
-			{{currentUser.username}} ||| <a href="#" ng-click="ctrl.logout()">Logout</a></div>
+		<div class="nav navbar-nav navbar-left">
+			Welcome: {{currentUser.username}} |||
+			
+		</div>
 
 		<div class="nav navbar-nav navbar-center">You logged in as:
 			{{currentUser.role}}</div>
-	</div>
 
 
-</div>
-
-<div ng-hide="currentUser.userid" class="container">
-	<div class="nav navbar-nav navbar-right">
-		<a href="#/login">Login
+		<!-- <div class="nav navbar-nav navbar-center">
+			<a href="#/updateUser" ng-click="ctrl.updateUser">My Profile</a>
+		</div> -->
 	</div>
 </div>
 
+<div class="container">
+	<center><h2>Mother Nature News</h2></center>
+
+	<div class="row">
+		<div class="col-md-4">
+			<div class="thumbnail">
+				<a href="resources/images/one.jpg" target="_blank"> <img
+					src="resources/images/one.jpg" alt="Lights" style="width: 100%">
+					<div class="caption">
+						<h3>Things We Love About Winter. For Real.</h3>
+						<p>Oh geez, guys. Wind Chill-acolypse 2017 was sort of a
+							bummer in all the worst ways, especially for those of us who had
+							to work Monday and Tuesday. But it wasn't all bad. In fact, Wind
+							Chill-acolypse 2017 reminded us of a lot of things we actually
+							love about winter in Columbus. 
+							</p>
+					</div>
+				</a>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="thumbnail">
+				<a href="resources/images/two.jpg" target="_blank"> <img
+					src="resources/images/two.jpg" alt="Nature" style="width: 100%">
+					<div class="caption">
+						<h3>6 Health Benefits of Having Pets</h3>
+						<p>About 65 percent of American households have pets, and we
+							spend nearly $35 billion dollars a year on these companion
+							animals. (Lucky dogs.) Our pets clearly have us wrapped around
+							their little paws, but what do we get from them in return?</p>
+					</div>
+				</a>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="thumbnail">
+				<a href="resources/images/three.jpg" target="_blank"> <img
+					src="resources/images/three.jpg" alt="Fjords" style="width: 100%">
+					<div class="caption">
+						<h3>Everything you need to know about organic gardening</h3>
+						<p>When we think of organic gardening and permaculture we tend
+							to conjure up images of bearded warriors dressed in overalls who
+							dedicate their lives to working long days in their vegetable
+							plots.</p>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+<br><br><br><br><br><br><br><br><br><br>
+<div id="footer">
+    <div class="container">
+        <div class="row">
+            <h3 class="footertext"style="text-align:center;background-color:lightgreen;">Mother Nature:</h3>
+            <br>
+              
+                  <p class="footertext" style="text-align:center; background-color:lightgreen;"> 2017 MotherNature.com. All rights reserved. Privacy & Security</p>
+               
+        </div>
+</div><img src="resources/images/foot.png" height=100 width=1500 >
 
