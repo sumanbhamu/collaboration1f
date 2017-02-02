@@ -1,0 +1,44 @@
+<div ng-controller="JobController as ctrl">
+<div ng-show="currentUser==''">
+<div class="alert alert-danger fade in">You are not logged in!</div>
+</div></div>
+
+<div class="container" ng-controller="JobController as ctrl">
+Here is the list of jobs
+
+<table class="table table-striped">
+             
+      <tr>
+    <th>Job Id</th>
+	<th>Job Title</th>
+	<th>Company</th>
+	<th>Creation Date</th>
+	<th>Details</th>
+	
+	
+  </tr>
+  <tr>
+    <th></th>
+	<th></th>
+	<th></th>
+	<th></th>
+	<th></th>
+	
+	<th></th>
+	<th></th>
+  </tr>
+  <tr ng-repeat="job in ctrl.jobs">
+      <td>{{job.jobid}}</td>
+      <td>{{job.title}}</td>
+      <td>{{job.qualification}}</td>
+       <td>{{job.created_date}}</td>
+        <td>{{job.description}}</td>
+     
+           	
+      </tr>
+  
+	 </table>
+
+
+<br/><br/><br/><br/>
+

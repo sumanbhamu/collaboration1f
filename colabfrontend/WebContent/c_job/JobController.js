@@ -1,5 +1,4 @@
 
-
 	
 'use strict';
 
@@ -8,11 +7,11 @@ app
 				'JobController',
 				[
 						
-						'JobService','UserService',
+						'JobService',/*'UserService',*/
 						'$location',
 						'$rootScope',
 						
-						function(JobService,UserService, $location, $rootScope) {
+						function(JobService/*,UserService*/, $location, $rootScope) {
 						
 							console.log("jobController.....js")
 							var self = this;
@@ -143,7 +142,6 @@ app
 										.then(
 												function(d) {
 													self.jobs = d;
-													
 													
 												},
 
