@@ -37,20 +37,7 @@ var BASE_URL='http://localhost:7188/cobackend/'
 );
 },
 
-/*SEND FRIEND REQUEST
-sendFriendRequest:function(friendID){
-	return $http.get(BASE_URL+'/addFriend/'+friendID)
-	.then(
-			function(response){
-				return response.data;
-			},
-			function(errResponse){
-				console.error('Error while sending Friend request');
-				return $q.reject(errResponse);
-			}				
-);
-},
-*/
+
 /*UPDATE FRIEND REQUEST.............................*/
 updateFriendRequest:function(friend, id){
 	return $http.put(BASE_URL+'/friend/'+id, friend)
