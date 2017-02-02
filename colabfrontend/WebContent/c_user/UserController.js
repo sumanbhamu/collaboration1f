@@ -218,9 +218,10 @@ app
 									isOnline : '',
 									role : '',
 									errorCode : '',
-									errorMessage : '',/* file : '' */
+									errorMessage : '',
 								};
 								
 							};
 
 						} ]);
+

@@ -1,4 +1,4 @@
-'user strict'; /* strictly follows the case i.e--case sensitive */
+'use strict'; /* strictly follows the case i.e--case sensitive */
 
 app.service('UserService', [
 		'$http',
@@ -12,10 +12,11 @@ app.service('UserService', [
 				fetchAllUsers:function(){
 					return $http.get(BASE_URL+'/users')
 					.then(
+							 //success handler
 							function(response){
 								console.log('Calling user in user service....... ')
 								return response.data;
-							},
+							},//failure handler
 							function(errResponse){
 								console.error('Error while fetching UserDetails');
 								return $q.reject(errResponse);
@@ -64,7 +65,10 @@ app.service('UserService', [
 					console.log("   updating userr....in user service//")
 					return $http.put(BASE_URL + '/update/', user).then(
 							function(response) {
+								
+								console.log("updated successfully in user service .js....")
 								return response.data;
+								
 							}, null
 
 					);
@@ -72,7 +76,7 @@ app.service('UserService', [
 
 				logout : function(user) {
 					console.log("   loggout userr....in user service//")
-					return $http.put(BASE_URL + '/logout/', user).then(
+					return $http.get(BASE_URL + '/user/logout').then(
 							function(response) {
 								return response.data;
 							}, null
@@ -101,3 +105,5 @@ app.service('UserService', [
 		]
 
 );
+
+

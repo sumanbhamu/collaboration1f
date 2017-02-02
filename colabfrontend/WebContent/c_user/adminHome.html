@@ -1,0 +1,20 @@
+<div ng-controller="UserController as ctrl">
+<div ng-show="currentUser==''">
+<div class="alert alert-danger fade in">Please login!!</div>
+</div>
+</div>
+
+<div ng-hide="currentUser==''">
+
+Welcome Admin!! <br/><br/>
+
+<center>
+<label>Users: </label><a href="#/view_all_users">View all users</a><br/><br/>
+<label>Blogs: </label><a href="#/listBlog">View all blogs</a><br/><br/>
+<label>Jobs : </label><a href="#/view_all_jobs">View all jobs</a><br/><br/>
+<label>Events: </label><a href="#/view_all_events">View all events</a><br/><br/>
+<label>Forum Topics: </label><a href="#/view_all_forums">View all forum topics</a><br/><br/>
+
+</div>
+
+
