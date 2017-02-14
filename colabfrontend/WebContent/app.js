@@ -211,7 +211,7 @@ app.run( function ($rootScope, $location,$cookieStore, $http) {
 		 console.log("$locationChangeStart")
 		 //http://localhost:8080/Collaboration/addjob
 	        // redirect to login page if not logged in and trying to access a restricted page(these pgs r not retricted)
-	        var restrictedPage = $.inArray($location.path(), ['','/','/adminHome','/search_job','/view_blog','/login', '/register','/list_blog','/aboutUs']) === -1;
+	        var restrictedPage = $.inArray($location.path(), ['','/','/search_job','/login', '/register','/aboutUs']) === -1;
 		 console.log("Navigating to page :" + $location.path())
 	        console.log("restrictedPage:" +restrictedPage)
 	        console.log("currentUser:" +$rootScope.currentUser)
