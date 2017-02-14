@@ -19,28 +19,37 @@
 }
 </style>
 
+<!-- <script src="resources/angular.js"></script>
+<script src="resources/angular-route.js"></script>
+  -->
+
+
 <body data-ng-app="myApp">
 
-	<h1>
-		<center>E-Connect {{1+9}}</center>
-	</h1>
+	<!-- <h1>
+		<center>Mother Nature {{1+9}}</center>
+	</h1> -->
 
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
+				<img class="img-circle" src="resources/images/logo.jpg" width="250"
+					height="100">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
 					data-target="#myNavbar">
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">WebSiteName</a>
+				<a class="navbar-brand" href="#"
+					style="color: green; font-style: italic; font-size: 50px;">Mother
+					Nature</a>
 			</div>
 
 
 		</div>
 		</div>
 	</nav>
-	<hr>
+
 	<ul class="nav navbar-nav navbar-left"
 		ng-controller="UserController as ctrl">
 		<li class="dropdown"><a ng-click="ctrl.logout()"
@@ -50,7 +59,7 @@
 
 	</ul>
 	<hr>
-	<hr>
+
 
 	<ul class="nav nav-pills">
 		<li class="active"><a href="#/">Home</a></li>
@@ -65,7 +74,7 @@
 				</button>
 				<ul class="dropdown-menu">
 					<li><a href="#/search_job">Search Job</a></li>
-					<li><a href="#">View Applied Job</a></li>
+					<!-- <li><a href="#">View Applied Job</a></li> -->
 					<li><a href="#/postJob">Post New Job</a></li>
 				</ul>
 			</div>
@@ -78,7 +87,7 @@
 					Friend<span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu">
-					<li><a href="#/friend">friends</a></li>
+					<!-- <li><a href="#/friend">friends</a></li> -->
 					<li><a href="#/view_friend">View Friends</a></li>
 					<li><a href="#/list_friend">list Friends</a></li>
 
@@ -100,9 +109,6 @@
 					<li><a href="#/create_blog">Create Blog</a></li>
 
 
-					<li><a href="#/blog">Blog</a></li>
-
-
 				</ul>
 			</div>
 		</li>
@@ -118,27 +124,31 @@
 			</div>
 		</li>
 
-		<li class="dropdown"><button class="btn btn-primary dropdown-toggle" type="button"
-					data-toggle="dropdown">
-					Events<span class="caret"></span></button>
+		<li class="dropdown"><button
+				class="btn btn-primary dropdown-toggle" type="button"
+				data-toggle="dropdown">
+				Events<span class="caret"></span>
+			</button>
 			<ul class="dropdown-menu">
 				<li><a href="#/create_event">Create Event</a></li>
 				<li class="divider"></li>
 				<li><a href="#/list_event">My Events</a></li>
 			</ul></li>
-			
-			
-			
-			<li class="dropdown"><button class="btn btn-primary dropdown-toggle" type="button"
-					data-toggle="dropdown">
-					Forum<span class="caret"></span></button>
+
+
+
+		<li class="dropdown"><button
+				class="btn btn-primary dropdown-toggle" type="button"
+				data-toggle="dropdown">
+				Forum<span class="caret"></span>
+			</button>
 			<ul class="dropdown-menu">
 				<li><a href="#/list_forum">List Forum</li>
 				<li class="divider"></li>
 				<li><a href="#/create_forum">Create Forum</a></li>
-								
+
 			</ul></li>
-			
+
 
 
 		<li>
@@ -157,7 +167,6 @@
 
 
 	<hr>
-
 
 
 	<div data-ng-view></div>
@@ -205,8 +214,6 @@
 
 <script src="c_chat_forum/ChatForumController.js"></script>
 <script src="c_chat_forum/ChatForumService.js"></script>
-
-
 
 
 
